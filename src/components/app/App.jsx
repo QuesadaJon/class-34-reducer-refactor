@@ -9,7 +9,9 @@ export default function App() {
     <>
       <button onClick={() => dispatch({ type: 'UNDO' })}>undo</button>
       <button onClick={() => dispatch({ type: 'REDO' })}>redo</button>
+      <label htmlFor="color">Input Color</label>
       <input
+        id="color"
         type="color"
         value={state.current}
         onChange={({ target }) => dispatch({
@@ -17,7 +19,8 @@ export default function App() {
           payload: target.value
         })} 
       />
-      <div 
+      <div
+        data-testid="display"
         style={{ 
           backgroundColor: state.current,
           width: '10rem',
