@@ -7,15 +7,15 @@ export default function App() {
 
   return (
     <>
-      <button onClick={() => dispatch({ type: 'UNDO' })}>undo</button>
-      <button onClick={() => dispatch({ type: 'REDO' })}>redo</button>
+      <button onClick={() => dispatch({ type: 'UNDO_VALUE' })}>undo</button>
+      <button onClick={() => dispatch({ type: 'REDO_VALUE' })}>redo</button>
       <label htmlFor="color">Input Color</label>
       <input
         id="color"
         type="color"
         value={state.current}
         onChange={({ target }) => dispatch({
-          type: 'CURRENT',
+          type: 'RECORD_VALUE',
           payload: target.value
         })} 
       />
