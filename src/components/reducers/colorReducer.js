@@ -1,28 +1,28 @@
 export const initalState = {
   current: '#00FF00',
-  undo: [],
-  redo: [],
+  before: [],
+  after: [],
 };
 
-export function reducer(state, action) {
+export default function reducer(state, action) {
   switch(action.type) {
-    case 'CURRENT':
+    case 'RECORD_VALUE':
       return { ...state,
-        undo: [...state.undo, state.current],        
+        before: [...state.before, state.current],        
         current: action.payload,
       };
-    case 'UNDO':
+    case 'UNDO_VALUE':
       return {
         ...state,
-        redo: [...state.undo, state.redo],
-        undo: [state.current, ...state.redo],
-        current: state.undo[state.undo.length - 1]
+        after: [...state.before, state.after],
+        before: [state.current, ...state.after],
+        current: state.before[state.before.length - 1]
       };
-    case 'REDO':
+    case 'REDO_VALUE':
       return {
         ...state,
-        current: state.redo[0],
-        redo: state.redo.slice(-1)
+        current: state.after[0],
+        after: state.after.slice(-1)
       };
     default:
       return state;
